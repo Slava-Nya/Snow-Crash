@@ -1,0 +1,21 @@
+# I find the list if exist users
+cat /etc/passwd
+
+# I found user flag00, now need to make find command for his files
+find / -user flag00 2>/dev/null
+
+# user flag00 has access to 2 similar files
+cat /usr/sbin/jonh
+cat /rofs/usr/sbin/john
+
+# output is 'cdiiddwpgswtgt'
+
+# I tried with this password to login but failed, 
+# Using dcode, I tried randomly the decryption tools.
+# The Cesar Cipher Identifier (ROT15) gave a readable string of the file: 
+nottoohardhere
+
+# Input this password to login
+su flag00
+
+# getflag command output is the level01 password

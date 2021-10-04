@@ -1,0 +1,57 @@
+# cout directory files list
+ls -la
+
+# here the level02.pcap file is located in home directory. Pcap files are data files containing the packet data of a network. 
+
+# send the level02.pcap on local machine and open file on Wireshark app
+scp -P 4242 level02@127.0.0.1:~/level02.pcap  .
+
+# open TCP stream to see all transmitted information: 
+
+//////////////////////////////////
+..%..%..&..... ..#..'..$..&..... ..#..'..$.. .....#.....'........... .38400,38400....#.SodaCan:0....'..DISPLAY.SodaCan:0......xterm.........."........!........"..".....b........b....	B.
+..............................1.......!.."......"......!..........."........"..".............	..
+.....................
+Linux 2.6.38-8-generic-pae (::ffff:10.1.1.2) (pts/10)
+
+..wwwbugs login: l.le.ev.ve.el.lX.X
+..
+Password: ft_wandr...NDRel.L0L
+.
+..
+Login incorrect
+wwwbugs login: 
+////////////////////
+
+# in string "Password: ft_wandr...NDRel.L0L" found password with '.' symbols.
+So open it password on hexpump data type
+
+/////////////////
+000000B9  66                                                 f
+000000BA  74                                                 t
+000000BB  5f                                                 _
+000000BC  77                                                 w
+000000BD  61                                                 a
+000000BE  6e                                                 n
+000000BF  64                                                 d
+000000C0  72                                                 r
+000000C1  7f                                                 .
+000000C2  7f                                                 .
+000000C3  7f                                                 .
+000000C4  4e                                                 N
+000000C5  44                                                 D
+000000C6  52                                                 R
+000000C7  65                                                 e
+000000C8  6c                                                 l
+000000C9  7f                                                 .
+000000CA  4c                                                 L
+000000CB  30                                                 0
+000000CC  4c                                                 L
+000000CD  0d                                                 .
+///////////////////
+
+# 7f symbols in ascii->hexdump is del. It means that user deleted previoous symbols
+
+ft_wandr...NDRel.L0L ---> ft_waNDReL0L
+
+# The password to the flag02 is "ft_waNDReL0L"

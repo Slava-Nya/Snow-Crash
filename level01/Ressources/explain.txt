@@ -1,0 +1,11 @@
+# show /etc/passwd content
+cat /etc/passwd
+
+# Found what flag01 user has a hashed password
+flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
+
+# To crack this password we used “John the Ripper” password cracker tool
+jonh --show "42hDRfypTqqnw"
+
+# Got the password 
+abcdefg
